@@ -19,16 +19,20 @@ public class Reading {
     @Column(nullable = false)
     private UUID uuid;
     
+    @Column(name = "kind_of_meter")
     private String kindOfMeter;
     
     private String comment;
     
+    @Column(name = "meter_id")
     private String meterId;
     
+    @Column(name = "meter_count")
     private Double meterCount;
     
     private boolean substitute;
     
+    @Column(name = "date_of_reading")
     private LocalDate dateOfReading;
     
     @ManyToOne
