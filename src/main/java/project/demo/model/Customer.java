@@ -1,6 +1,8 @@
 package project.demo.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -9,6 +11,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 @Table(name = "customers")
@@ -31,6 +34,9 @@ public class Customer {
     private LocalDate birthDate;
 
     private String gender;
+
+    @OneToMany(mappedBy = "customer", cascade = jakarta.persistence.CascadeType.ALL, orphanRemoval = true)
+    private List<Reading> readings = new ArrayList<>();
 
     public Long getId() {
         return id;
