@@ -38,6 +38,9 @@ public class Customer {
     @OneToMany(mappedBy = "customer", cascade = jakarta.persistence.CascadeType.ALL, orphanRemoval = true)
     private List<Reading> readings = new ArrayList<>();
 
+    public Customer() {
+        this.uuid = UUID.randomUUID();
+    }
     public Long getId() {
         return id;
     }
