@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import project.demo.model.Customer;
 import project.demo.service.Customer.CustomerService;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -38,7 +41,7 @@ public class CustomerController {
 
  
     @GetMapping("/{id}")
-    public ResponseEntity<Customer> getCustomerById(Long id)
+    public ResponseEntity<Customer> getCustomerById(@PathVariable Long id)
     {
         Customer dbCustomer = customerService.getCustomerById(id);
 
@@ -56,6 +59,12 @@ public class CustomerController {
         return ResponseEntity.ok(dbCustomers);
     }
 
-    
-    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCustomer(@RequestParam Long id)
+    {
+        customerService.deleleteCustomerById(id);
+
+        return ResponseEntity.noContent().build();
+    }
+
 }
