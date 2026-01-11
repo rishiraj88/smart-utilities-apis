@@ -1,5 +1,7 @@
 package project.demo.service.Customer;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import project.demo.model.Customer;
@@ -22,6 +24,13 @@ public class CustomerService {
         return createdCustomer;
     }  
     
-   
+    public Customer getCustomerById (Long id) {
+
+        return customerRepository.findById(id).orElse(null);
+    }
+
+    public List<Customer> getAllCustomers() {
+        return customerRepository.findAll();
+    }
 
 }
