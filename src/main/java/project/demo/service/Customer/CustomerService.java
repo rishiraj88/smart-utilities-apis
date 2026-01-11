@@ -19,6 +19,10 @@ public class CustomerService {
 
     public Customer createCustomer (Customer customer) {
 
+        //toDo: handle validation
+        // customer null check
+        // mandatory fields check
+        
         Customer createdCustomer = customerRepository.save(customer);
 
         return createdCustomer;
@@ -26,11 +30,19 @@ public class CustomerService {
     
     public Customer getCustomerById (Long id) {
 
-        return customerRepository.findById(id).orElse(null);
+        //toDo: handle not found exception
+        //Id == null check
+
+        Customer dbCustomer = customerRepository.findById(id).orElse(null);
+
+        return dbCustomer;
     }
 
     public List<Customer> getAllCustomers() {
-        return customerRepository.findAll();
+
+        List<Customer> dbCustomers = customerRepository.findAll();
+
+        return dbCustomers;
     }
 
 }
