@@ -8,7 +8,7 @@ import project.demo.model.Customer;
 import project.demo.repository.CustomerRepository.CustomerRepository;
 
 @Service
-public class CustomerServiceImpl {
+public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository customerRepository;
 
