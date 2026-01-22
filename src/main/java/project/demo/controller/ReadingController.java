@@ -7,6 +7,10 @@ import project.demo.model.Reading;
 import project.demo.service.Reading.ReadingService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.apache.catalina.connector.Response;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -25,22 +29,31 @@ public class ReadingController {
 
 
     @PostMapping
-    public Reading createReading(@RequestBody Reading reading)
+    public ResponseEntity<Reading> createReading(@RequestBody Reading reading)
     {
         
         Reading createdReading = readingService.createReading(reading);
         
-        return createdReading;
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdReading);
     }
 
     @GetMapping("/{id}")
-    public Reading getReadingById(@RequestParam Long id)
+    public ResponseEntity<Reading> getReadingById(@RequestParam Long id)
     {
         Reading dbReading = readingService.getReadingById(id);
 
-        return dbReading;
+        return ResponseEntity.ok(dbReading);
     }
     
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteReadingById(@RequestParam Long id)
+    {
+        //todo
+        //handle exceptions and validation id null check ??
+        readingService.deleleteReadingById(id);
+
+        return ResponseEntity.noContent().build();
+    }
     
 
 }
