@@ -16,6 +16,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 
 
@@ -65,8 +68,19 @@ public class ReadingController {
 
         //todo
         //handle exceptions and validation
-        
+
         return ResponseEntity.ok(dbReadings);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Reading> updateReading(@PathVariable Long id, @RequestBody Reading reading)
+    {
+        //todo
+        //handle exceptions and validation
+        
+        Reading updatedReading = readingService.updateReading(id, reading);
+
+        return ResponseEntity.ok(updatedReading);
     }
 
 }
