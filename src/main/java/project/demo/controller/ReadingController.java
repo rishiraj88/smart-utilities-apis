@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -61,7 +60,7 @@ public class ReadingController {
 
         return ResponseEntity.ok(dbReadings);
     }
-    
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteReadingById(@RequestParam Long id)
     {
