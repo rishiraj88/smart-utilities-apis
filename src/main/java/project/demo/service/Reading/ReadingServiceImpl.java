@@ -60,8 +60,13 @@ public class ReadingServiceImpl implements ReadingService{
 
     @Override
     public Reading updateReading(Long id, Reading reading) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateReading'");
+      
+        Reading dbReading = getReadingById(id);
+
+        //toDo: handle not found exception
+        //if ( dbReading == null)
+
+        return dbReading;
     }
 
 }
