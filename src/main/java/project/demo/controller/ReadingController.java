@@ -7,6 +7,9 @@ import project.demo.model.Reading;
 import project.demo.service.Reading.ReadingService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -22,13 +25,22 @@ public class ReadingController {
 
 
     @PostMapping
-    public Reading createReading(@RequestBody Reading reading) {
-        //TODO: process POST request
+    public Reading createReading(@RequestBody Reading reading)
+    {
         
         Reading createdReading = readingService.createReading(reading);
         
         return createdReading;
     }
+
+    @GetMapping("/{id}")
+    public Reading getReadingById(@RequestParam Long id)
+    {
+        Reading dbReading = readingService.getReadingById(id);
+
+        return dbReading;
+    }
+    
     
 
 }
