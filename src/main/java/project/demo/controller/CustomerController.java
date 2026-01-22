@@ -62,6 +62,9 @@ public class CustomerController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCustomer(@PathVariable Long id)
     {
+        //todo
+        //handle exceptions and validation id null check ??
+
         customerService.deleleteCustomerById(id);
 
         return ResponseEntity.noContent().build();
