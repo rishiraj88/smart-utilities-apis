@@ -66,6 +66,15 @@ public class ReadingServiceImpl implements ReadingService{
         //toDo: handle not found exception
         //if ( dbReading == null)
 
+        dbReading.setKindOfMeter(reading.getKindOfMeter());
+        dbReading.setComment(reading.getComment()); 
+        dbReading.setMeterId(reading.getMeterId());
+        dbReading.setMeterCount(reading.getMeterCount());
+        dbReading.setSubstitute(reading.isSubstitute());
+        dbReading.setDateOfReading(reading.getDateOfReading());
+        
+        readingRepository.save(dbReading);
+
         return dbReading;
     }
 
