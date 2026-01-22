@@ -24,9 +24,9 @@ public class ReadingServiceImpl implements ReadingService{
 
 
     @Override
-    public Reading getReadingById(Reading reading) {
+    public Reading getReadingById(Long id) {
 
-        Reading dbReading = readingRepository.findById(reading.getId()).orElse(null);
+        Reading dbReading = readingRepository.findById(id).orElse(null);
 
         //toDo: handle not found exception
 
@@ -48,8 +48,13 @@ public class ReadingServiceImpl implements ReadingService{
 
     @Override
     public void deleleteReadingById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleleteReadingById'");
+      
+        Reading dbReading = getReadingById(id);
+
+        //toDo: handle not found exception 
+        //if ( dbReading == null)
+
+        readingRepository.deleteById(id);
     }
 
 

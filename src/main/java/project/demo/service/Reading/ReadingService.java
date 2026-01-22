@@ -8,7 +8,7 @@ public interface ReadingService {
     
     Reading createReading(Reading reading);
 
-    Reading getReadingById (Reading reading);
+    Reading getReadingById (Long id);
  
     List<Reading> getAllReadings();
 
