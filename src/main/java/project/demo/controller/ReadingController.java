@@ -7,6 +7,9 @@ import project.demo.model.Reading;
 import project.demo.service.Reading.ReadingService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
+
 import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,5 +58,15 @@ public class ReadingController {
         return ResponseEntity.noContent().build();
     }
     
+    @GetMapping
+    public ResponseEntity<List<Reading>> getAllReadings()
+    {
+        List<Reading> dbReadings = readingService.getAllReadings();
+
+        //todo
+        //handle exceptions and validation
+        
+        return ResponseEntity.ok(dbReadings);
+    }
 
 }
