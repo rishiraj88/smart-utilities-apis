@@ -35,6 +35,7 @@ public class Reading {
     @Column(name = "meter_count")
     private Double meterCount;
     
+    @Column(name = "substitute")
     private boolean substitute;
     
     @Column(name = "date_of_reading")
