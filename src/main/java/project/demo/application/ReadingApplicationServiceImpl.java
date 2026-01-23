@@ -27,7 +27,7 @@ public class ReadingApplicationServiceImpl implements ReadingApplicationService 
 
         Customer dbCustomer = customerService.getCustomerById(reading.getCustomer().getId());
 
-        if(dbCustomer.getId() == null)
+        if(dbCustomer == null)
         {
             customer = customerService.createCustomer(reading.getCustomer());
         }
