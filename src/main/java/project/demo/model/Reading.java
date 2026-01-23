@@ -26,6 +26,7 @@ public class Reading {
     @Column(name = "kind_of_meter")
     private String kindOfMeter;
     
+    @Column(name = "comment")
     private String comment;
     
     @Column(name = "meter_id")
