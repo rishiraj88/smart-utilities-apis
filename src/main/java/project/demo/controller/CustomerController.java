@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import project.demo.application.Interfaces.CustomerApplicationService;
 import project.demo.model.Customer;
-import project.demo.service.Customer.CustomerService;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,9 +22,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RequestMapping("/api/customers")
 public class CustomerController {
     
-    private final CustomerService customerService;
+    private final CustomerApplicationService customerService;
 
-    public CustomerController(CustomerService customerService) {
+    public CustomerController(CustomerApplicationService customerService) {
         this.customerService = customerService;
     }
 
