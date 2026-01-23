@@ -2,12 +2,15 @@ package project.demo.application;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import project.demo.application.Interfaces.ReadingApplicationService;
 import project.demo.model.Customer;
 import project.demo.model.Reading;
 import project.demo.service.Customer.CustomerService;
 import project.demo.service.Reading.ReadingService;
 
+@Service
 public class ReadingApplicationServiceImpl implements ReadingApplicationService {
 
     private final ReadingService readingService;
