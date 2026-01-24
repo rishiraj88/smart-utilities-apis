@@ -36,3 +36,10 @@ não devia ser tratado no frontend esse caso?
     },
 }
 
+//customer
+{
+    "firstName": "test",
+    "lastName": "test",
+    "birthDate": "1900-01-01",
+    "gender": "M"
+}
