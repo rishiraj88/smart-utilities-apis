@@ -3,6 +3,7 @@ package project.demo.service.Customer;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import project.demo.model.Customer;
 import project.demo.repository.CustomerRepository.CustomerRepository;
@@ -17,7 +18,7 @@ public class CustomerServiceImpl implements CustomerService {
         this.customerRepository = customerRepository;
     }
 
-
+    @Transactional
     public Customer createCustomer (Customer customer)
     {
 
@@ -26,7 +27,7 @@ public class CustomerServiceImpl implements CustomerService {
         // mandatory fields check
 
         Customer createdCustomer = customerRepository.save(customer);
-
+        customerRepository.flush(); // Ensure immediate synchronization with the database
         return createdCustomer;
     }  
     
