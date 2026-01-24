@@ -1,0 +1,38 @@
+///pendencias
+seria possível reading vir sem nenhum customer ou  com customer Id?
+não devia ser tratado no frontend esse caso?
+
+
+*******
+{
+    "comment": "new checking gas",
+    "kindOfMeter": "HEIZUNG",
+    "meterId": "T1100",
+    "meterCount": 311.0,
+    "dateOfReading": "2015-01-01",
+    "substitute": true,
+    "customer":  {
+        "id": 3,
+        "uuid": "1bb475dd-04f4-4256-8fb7-eee8c50a19f8",
+        "firstName": "Aline",
+        "lastName": "Dias",
+        "gender": "F"
+    }
+}
+
+
+{
+    "comment": "new checking gas",
+    "kindOfMeter": "HEIZUNG",
+    "meterId": "T1100",
+    "meterCount": 311.0,
+    "dateOfReading": "2015-01-01",
+    "substitute": true,
+    "customer":  {
+        "firstName": "Test",
+        "lastName": "Test",
+        "birthDate": "1995-01-20",
+        "gender": "F"
+    },
+}
+
