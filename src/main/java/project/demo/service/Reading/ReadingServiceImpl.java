@@ -76,4 +76,10 @@ public class ReadingServiceImpl implements ReadingService {
         return dbReading;
     }
 
+    @Override
+    public Reading getReadingByCustomerId(Long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getReadingByCustomerId'");
+    }
+
 }
