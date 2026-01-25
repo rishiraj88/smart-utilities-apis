@@ -13,66 +13,62 @@ public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository customerRepository;
 
-    public CustomerServiceImpl(CustomerRepository customerRepository)
-    {
+    public CustomerServiceImpl(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 
-    @Transactional
-    public Customer createCustomer (Customer customer)
-    {
+    @Override
+    public Customer createCustomer(Customer customer) {
 
-        //toDo: handle validation
+        // toDo: handle validation
         // customer null check
         // mandatory fields check
 
         Customer createdCustomer = customerRepository.save(customer);
         customerRepository.flush(); // Ensure immediate synchronization with the database
         return createdCustomer;
-    }  
-    
-    public Customer getCustomerById (Long id)
-    {
-        //toDo: handle not found exception
-        //Id == null check
+    }
+
+    @Override
+    public Customer getCustomerById(Long id) {
+        // toDo: handle not found exception
+        // Id == null check
 
         Customer dbCustomer = customerRepository.findById(id).orElse(null);
 
         return dbCustomer;
     }
 
-    public List<Customer> getAllCustomers()
-    {
+    @Override
+    public List<Customer> getAllCustomers() {
 
         List<Customer> dbCustomers = customerRepository.findAll();
 
         return dbCustomers;
     }
 
-    public void deleleteCustomerById (Long id)
-    {
+    @Override
+    public void deleleteCustomerById(Long id) {
         Customer dbCustomer = getCustomerById(id);
 
-       if ( dbCustomer == null)
-       {
-            //toDo:
-            //create Class ResourceNotFoundException extends RuntimeException ???
-            //throw new ResourceNotFoundException("Customer not found with id: " + id);
-       }
+        if (dbCustomer == null) {
+            // toDo:
+            // create Class ResourceNotFoundException extends RuntimeException ???
+            // throw new ResourceNotFoundException("Customer not found with id: " + id);
+        }
 
-       customerRepository.deleteById(id);
+        customerRepository.deleteById(id);
 
     }
 
-    public Customer updateCustomer (Long id, Customer customer)
-    {
+    @Override
+    public Customer updateCustomer(Long id, Customer customer) {
         Customer dbCustomer = getCustomerById(id);
 
-        //id == null or customer == null check
+        // id == null or customer == null check
 
-        if ( dbCustomer == null)
-        {
-            //toDo:
+        if (dbCustomer == null) {
+            // toDo:
             // handle exception
         }
 
