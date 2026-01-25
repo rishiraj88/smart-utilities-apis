@@ -35,7 +35,7 @@ public class Customer {
 
     private String gender;
 
-    @OneToMany(mappedBy = "customer", cascade = jakarta.persistence.CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "customer", orphanRemoval = true)
     private List<Reading> readings = new ArrayList<>();
 
     // delete this constructor

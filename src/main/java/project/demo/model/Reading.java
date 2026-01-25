@@ -42,7 +42,7 @@ public class Reading {
     private LocalDate dateOfReading;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id", nullable = false)
+    @JoinColumn(name = "customer_id", nullable = true)
     private Customer customer;
 
     // delete this constructor
