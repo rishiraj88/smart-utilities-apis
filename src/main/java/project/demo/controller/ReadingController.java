@@ -44,7 +44,7 @@ public class ReadingController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Reading> getReadingById(@RequestParam Long id)
+    public ResponseEntity<Reading> getReadingById(@PathVariable Long id)
     {
         Reading dbReading = readingService.getReadingById(id);
 
@@ -63,7 +63,7 @@ public class ReadingController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteReadingById(@RequestParam Long id)
+    public ResponseEntity<Void> deleteReadingById(@PathVariable Long id)
     {
         //todo
         //handle exceptions and validation id null check ??
