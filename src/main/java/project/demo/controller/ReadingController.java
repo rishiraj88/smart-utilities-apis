@@ -5,7 +5,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import project.demo.application.Interfaces.ReadingApplicationService;
 import project.demo.domain.entities.Reading;
-import project.demo.service.Reading.ReadingService;
+import project.demo.domain.service.Reading.ReadingService;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 

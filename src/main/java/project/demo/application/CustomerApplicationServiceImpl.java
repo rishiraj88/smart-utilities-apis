@@ -3,8 +3,8 @@ package project.demo.application;
 import project.demo.application.Interfaces.CustomerApplicationService;
 import project.demo.domain.entities.Customer;
 import project.demo.domain.entities.Reading;
-import project.demo.service.Customer.CustomerService;
-import project.demo.service.Reading.ReadingService;
+import project.demo.domain.service.Customer.CustomerService;
+import project.demo.domain.service.Reading.ReadingService;
 
 import java.util.List;
 

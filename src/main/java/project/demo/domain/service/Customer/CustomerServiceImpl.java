@@ -1,4 +1,4 @@
-package project.demo.service.Customer;
+package project.demo.domain.service.Customer;
 
 import java.util.List;
 
