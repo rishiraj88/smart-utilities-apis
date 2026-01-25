@@ -35,7 +35,7 @@ public class Customer {
 
     private String gender;
 
-    @OneToMany(mappedBy = "customer", orphanRemoval = true)
+    @OneToMany(mappedBy = "customer")
     private List<Reading> readings = new ArrayList<>();
 
     // delete this constructor
