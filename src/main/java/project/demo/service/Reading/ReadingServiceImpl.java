@@ -77,9 +77,10 @@ public class ReadingServiceImpl implements ReadingService {
     }
 
     @Override
-    public Reading getReadingByCustomerId(Long customerId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getReadingByCustomerId'");
+    public List<Reading> getReadingByCustomerId(Long customerId) {
+        
+       List<Reading> readings = readingRepository.findByCustomerId(customerId);
+       return readings;
     }
 
 }
