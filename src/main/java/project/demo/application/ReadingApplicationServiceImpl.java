@@ -46,6 +46,7 @@ public class ReadingApplicationServiceImpl implements ReadingApplicationService 
         return readingService.createReading(reading);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public Reading getReadingById(Long id) {
         Reading dbReading = readingService.getReadingById(id);
@@ -56,6 +57,7 @@ public class ReadingApplicationServiceImpl implements ReadingApplicationService 
         return dbReading;
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<Reading> getAllReadings() {
 
@@ -66,6 +68,7 @@ public class ReadingApplicationServiceImpl implements ReadingApplicationService 
         return allReadings;
     }
 
+    @Transactional
     @Override
     public void deleleteReadingById(Long id) {
 
@@ -75,6 +78,7 @@ public class ReadingApplicationServiceImpl implements ReadingApplicationService 
 
     }
 
+    @Transactional
     @Override
     public Reading updateReading(Long id, Reading reading) {
         Reading updatedReading = readingService.updateReading(id, reading);
