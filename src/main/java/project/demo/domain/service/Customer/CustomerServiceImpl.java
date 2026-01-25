@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import project.demo.domain.entities.Customer;
-import project.demo.infrastructure.repository.CustomerRepository.CustomerRepository;
+import project.demo.infrastructure.repository.customer.CustomerRepository;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
