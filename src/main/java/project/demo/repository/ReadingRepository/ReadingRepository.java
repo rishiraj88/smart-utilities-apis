@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import project.demo.entities.Reading;
+import project.demo.domain.entities.Reading;
 
 //Spring Data JPA repository 
 public interface ReadingRepository extends JpaRepository<Reading, Long>

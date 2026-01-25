@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import project.demo.application.Interfaces.CustomerApplicationService;
-import project.demo.entities.Customer;
+import project.demo.domain.entities.Customer;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

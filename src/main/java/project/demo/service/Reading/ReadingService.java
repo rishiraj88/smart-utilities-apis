@@ -2,7 +2,7 @@ package project.demo.service.Reading;
 
 import java.util.List;
 
-import project.demo.entities.Reading;
+import project.demo.domain.entities.Reading;
 
 public interface ReadingService {
     
