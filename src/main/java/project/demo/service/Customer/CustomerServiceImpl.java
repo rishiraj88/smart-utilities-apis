@@ -24,7 +24,6 @@ public class CustomerServiceImpl implements CustomerService {
         // mandatory fields check
 
         Customer createdCustomer = customerRepository.save(customer);
-        customerRepository.flush(); // Ensure immediate synchronization with the database
         return createdCustomer;
     }
 
