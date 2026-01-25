@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import project.demo.domain.entities.Reading;
-import project.demo.infrastructure.repository.ReadingRepository.ReadingRepository;
+import project.demo.infrastructure.repository.reading.ReadingRepository;
 
 //Service eh um bean spring gerenciado pelo Spring IoC container
 @Service

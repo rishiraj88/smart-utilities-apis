@@ -1,4 +1,4 @@
-package project.demo.infrastructure.repository.ReadingRepository;
+package project.demo.infrastructure.repository.reading;
 
 import java.util.List;
 
