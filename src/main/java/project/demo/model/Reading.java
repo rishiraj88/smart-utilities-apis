@@ -15,37 +15,37 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "readings")
 public class Reading {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, unique = true)
     private UUID uuid;
-    
+
     @Column(name = "kind_of_meter")
     private String kindOfMeter;
-    
+
     @Column(name = "comment")
     private String comment;
-    
+
     @Column(name = "meter_id")
     private String meterId;
-    
+
     @Column(name = "meter_count")
     private Double meterCount;
-    
+
     @Column(name = "substitute")
     private boolean substitute;
-    
+
     @Column(name = "date_of_reading")
     private LocalDate dateOfReading;
-    
+
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
- 
-    //delete this constructor   
+
+    // delete this constructor
     public Reading() {
         this.uuid = UUID.randomUUID();
     }
@@ -114,6 +114,4 @@ public class Reading {
         this.dateOfReading = dateOfReading;
     }
 
-
-    
 }
