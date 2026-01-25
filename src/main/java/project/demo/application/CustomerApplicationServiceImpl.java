@@ -1,8 +1,8 @@
 package project.demo.application;
 
 import project.demo.application.Interfaces.CustomerApplicationService;
-import project.demo.model.Customer;
-import project.demo.model.Reading;
+import project.demo.entities.Customer;
+import project.demo.entities.Reading;
 import project.demo.service.Customer.CustomerService;
 import project.demo.service.Reading.ReadingService;
 

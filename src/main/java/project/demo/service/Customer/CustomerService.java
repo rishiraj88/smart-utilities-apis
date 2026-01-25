@@ -2,7 +2,7 @@ package project.demo.service.Customer;
 
 import java.util.List;
 
-import project.demo.model.Customer;
+import project.demo.entities.Customer;
 
 public interface CustomerService {
     

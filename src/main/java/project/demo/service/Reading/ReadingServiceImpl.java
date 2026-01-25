@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import project.demo.model.Reading;
+import project.demo.entities.Reading;
 import project.demo.repository.ReadingRepository.ReadingRepository;
 
 //Service eh um bean spring gerenciado pelo Spring IoC container
@@ -78,7 +78,7 @@ public class ReadingServiceImpl implements ReadingService {
 
     @Override
     public List<Reading> getReadingByCustomerId(Long customerId) {
-        
+
        List<Reading> readings = readingRepository.findByCustomerId(customerId);
        return readings;
     }

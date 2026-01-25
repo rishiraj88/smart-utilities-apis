@@ -1,4 +1,4 @@
-package project.demo.model;
+package project.demo.entities;
 
 import java.time.LocalDate;
 import java.util.UUID;
