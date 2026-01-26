@@ -18,6 +18,12 @@ public class User {
     @Column(name = "email", nullable = false)
     private String email;
 
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
+
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
+
     @Column(name = "password_hash", nullable = false)
     private byte[] passwordHash;
 
@@ -31,13 +37,21 @@ public class User {
         return email;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
     public byte[] getPasswordHash() {
         return passwordHash;
     }
 
     public byte[] getPasswordSalt() {
         return passwordSalt;
-    }   
+    }
 
     public Long getId() {
         return id;
@@ -53,6 +67,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public void setPasswordHash(byte[] passwordHash) {
