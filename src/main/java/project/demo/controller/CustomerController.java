@@ -66,10 +66,10 @@ public class CustomerController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Customer> updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
-        if (customer == null) {
+        if (customer == null || id == null) {
             return ResponseEntity.badRequest().build();
         }
-        
+
         // toDo
         // handle exceptions and validation id and customer null check ??
 
