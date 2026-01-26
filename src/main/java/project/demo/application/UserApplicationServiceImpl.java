@@ -14,16 +14,16 @@ public class UserApplicationServiceImpl implements UserApplicationService {
     @Override
     public String Login(String email, String password) {
       
-        return userService.Login(email, password);
+        return userService.login(email, password);
     }
 
     @Override
     public boolean Register(project.demo.domain.entities.User user, String password) {
-        return userService.Register(user, password);
+        return userService.register(user, password);
     }
 
     @Override
     public boolean ChangePassword(project.demo.domain.entities.User user, String newPassword) {
-        return userService.ChangePassword(user, newPassword);
+        return userService.changePassword(user, newPassword);
     }
 }
