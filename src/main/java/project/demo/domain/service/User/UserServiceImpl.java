@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String Login(String email, String password) {
+    public String login(String email, String password) {
 
         Optional<User> existingUser = userRepository.findByEmailIgnoreCase(email);
 
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
 
         User user = existingUser.get();
 
-        boolean isPasswordValid = VerifyPassword(
+        boolean isPasswordValid = verifyPassword(
                 password,
                 user.getPasswordHash(),
                 user.getPasswordSalt());
@@ -54,11 +54,11 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("Invalid credentials");
         }
 
-        return GenerateToken(user);
+        return generateToken(user);
     }
 
     @Override
-    public boolean Register(User user, String password) {
+    public boolean register(User user, String password) {
 
         Optional<User> existingUser = userRepository.findByEmailIgnoreCase(user.getEmail());
 
@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
             return false;
         }
 
-        PasswordData passwordData = CreatePassword(password);
+        PasswordData passwordData = createPassword(password);
 
         user.setPasswordHash(passwordData.hashPassword());
         user.setPasswordSalt(passwordData.saltPassword());
@@ -77,14 +77,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean ChangePassword(User user, String newPassword) {
+    public boolean changePassword(User user, String newPassword) {
         Optional<User> existingUser = userRepository.findByEmailIgnoreCase(user.getEmail());
 
         if (existingUser.isEmpty()) {
             return false;
         }
 
-        PasswordData passwordData = CreatePassword(newPassword);
+        PasswordData passwordData = createPassword(newPassword);
         user.setPasswordHash(passwordData.hashPassword());
         user.setPasswordSalt(passwordData.saltPassword());
         userRepository.save(user);
@@ -92,7 +92,7 @@ public class UserServiceImpl implements UserService {
     }
 
     // refactor try catch
-    private PasswordData CreatePassword(String password) {
+    private PasswordData createPassword(String password) {
         try {
             KeyGenerator keyGenerator = KeyGenerator.getInstance("HmacSHA512");
             SecretKey secretKey = keyGenerator.generateKey();
@@ -112,7 +112,7 @@ public class UserServiceImpl implements UserService {
     }
 
     // refactor try catch
-    private boolean VerifyPassword(String password, byte[] storedHash, byte[] storedSalt) {
+    private boolean verifyPassword(String password, byte[] storedHash, byte[] storedSalt) {
         try {
             Mac mac = Mac.getInstance("HmacSHA512");
             SecretKeySpec secretkey = new SecretKeySpec(storedSalt, "HmacSHA512");
@@ -128,7 +128,7 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    private String GenerateToken(User user) {
+    private String generateToken(User user) {
         return Jwts.builder()
                 .setSubject(user.getEmail())
                 .claim("id", user.getId())
