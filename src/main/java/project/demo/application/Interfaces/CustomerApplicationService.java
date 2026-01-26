@@ -5,14 +5,14 @@ import java.util.List;
 import project.demo.domain.entities.Customer;
 
 public interface CustomerApplicationService {
- 
-      Customer createCustomer (Customer customer);
- 
-    Customer getCustomerById (Long id);
-  
-    List<Customer> getAllCustomers();
 
-    void deleleteCustomerById (Long id);
+  Customer createCustomer(Customer customer);
 
-    Customer updateCustomer (Long id, Customer customer);
+  Customer getCustomerById(Long id);
+
+  List<Customer> getAllCustomers();
+
+  boolean deleteCustomerById(Long id);
+
+  Customer updateCustomer(Long id, Customer customer);
 }

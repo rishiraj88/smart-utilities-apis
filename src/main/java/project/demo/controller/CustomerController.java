@@ -59,7 +59,9 @@ public class CustomerController {
         // todo
         // handle exceptions and validation id null check ??
 
-        customerService.deleleteCustomerById(id);
+        if (!customerService.deleteCustomerById(id)) {
+            return ResponseEntity.notFound().build();
+        }
 
         return ResponseEntity.noContent().build();
     }

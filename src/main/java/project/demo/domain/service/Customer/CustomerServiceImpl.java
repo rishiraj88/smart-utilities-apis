@@ -46,17 +46,19 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void deleleteCustomerById(Long id) {
+    public boolean deleteCustomerById(Long id) {
         Customer dbCustomer = getCustomerById(id);
 
         if (dbCustomer == null) {
             // toDo:
             // create Class ResourceNotFoundException extends RuntimeException ???
             // throw new ResourceNotFoundException("Customer not found with id: " + id);
+            return false;
         }
 
         customerRepository.deleteById(id);
 
+        return true;
     }
 
     @Override

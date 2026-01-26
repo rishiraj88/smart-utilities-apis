@@ -43,14 +43,15 @@ public class CustomerApplicationServiceImpl implements CustomerApplicationServic
 
     @Transactional
     @Override
-    public void deleleteCustomerById(Long id) {
+    public boolean deleteCustomerById(Long id) {
         List<Reading> readings = readingService.getReadingByCustomerId(id);
         
+
         for (Reading reading : readings) {
             reading.setCustomer(null);
         }
 
-        customerService.deleleteCustomerById(id);
+        return customerService.deleteCustomerById(id);
     }
 
     @Transactional
