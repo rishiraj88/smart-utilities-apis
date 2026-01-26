@@ -12,7 +12,7 @@ public interface ReadingApplicationService {
  
     List<Reading> getAllReadings();
 
-    void deleleteReadingById (Long id);
+    boolean deleleteReadingById (Long id);
 
     Reading updateReading (Long id, Reading reading);
 }

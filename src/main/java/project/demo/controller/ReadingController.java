@@ -68,7 +68,8 @@ public class ReadingController {
     {
         //todo
         //handle exceptions and validation id null check ??
-        readingService.deleleteReadingById(id);
+        if(!readingService.deleleteReadingById(id))
+            return ResponseEntity.notFound().build();
 
         return ResponseEntity.noContent().build();
     }

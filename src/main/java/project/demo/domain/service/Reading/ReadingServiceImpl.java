@@ -46,14 +46,18 @@ public class ReadingServiceImpl implements ReadingService {
     }
 
     @Override
-    public void deleleteReadingById(Long id) {
+    public boolean deleleteReadingById(Long id) {
 
         Reading dbReading = getReadingById(id);
 
         // toDo: handle not found exception
-        // if ( dbReading == null)
+        if ( dbReading == null)
+        {
+            return false;
+        }
 
         readingRepository.deleteById(id);
+        return true;
     }
 
     @Override

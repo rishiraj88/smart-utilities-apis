@@ -70,12 +70,10 @@ public class ReadingApplicationServiceImpl implements ReadingApplicationService 
 
     @Transactional
     @Override
-    public void deleleteReadingById(Long id) {
+    public boolean deleleteReadingById(Long id) {
 
         // check if reading exists
-
-        readingService.deleleteReadingById(id);
-
+        return readingService.deleleteReadingById(id);
     }
 
     @Transactional
