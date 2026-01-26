@@ -49,7 +49,6 @@ public class Reading {
         this.uuid = UUID.randomUUID();
     }
 
-    // ID
     public Long getId() {
         return id;
     }
@@ -58,12 +57,10 @@ public class Reading {
         this.id = id;
     }
 
-    // UUID (Apenas Getter para manter imutabilidade)
     public UUID getUuid() {
         return uuid;
     }
 
-    // Kind of Meter
     public String getKindOfMeter() {
         return kindOfMeter;
     }
@@ -90,7 +87,6 @@ public class Reading {
         this.meterId = meterId;
     }
 
-    // Meter Count
     public Double getMeterCount() {
         return meterCount;
     }
@@ -99,7 +95,6 @@ public class Reading {
         this.meterCount = meterCount;
     }
 
-    // Substitute (Convenção para boolean: isSubstitute)
     public boolean getSubstitute() {
         return substitute;
     }
@@ -108,7 +103,6 @@ public class Reading {
         this.substitute = substitute;
     }
 
-    // Date of Reading
     public LocalDate getDateOfReading() {
         return dateOfReading;
     }
