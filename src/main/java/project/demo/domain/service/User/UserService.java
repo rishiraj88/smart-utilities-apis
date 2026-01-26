@@ -1,10 +1,9 @@
 package project.demo.domain.service.User;
 
-import org.apache.catalina.User;
-
+import project.demo.domain.entities.User;
 public interface UserService {
  
     String Login(String email, String password);
 
-    void Register(User user, String password);
+    boolean Register(User user, String password);
 }
