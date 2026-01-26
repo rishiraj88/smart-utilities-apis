@@ -1,6 +1,16 @@
 package project.demo.domain.service.User;
 
+import org.apache.catalina.User;
+
+import project.demo.infrastructure.repository.user.UserRepository;
+
 public class UserServiceImpl implements UserService {
+
+    private final UserRepository userRepository;
+
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }   
 
     @Override
     public String Login(String email, String password) {
@@ -10,12 +20,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void Register(User user, String password) {
-        // Implementation of registration logic
-        return "User registered with email: " + email + " and name: " + name;
+        
+
+        return;
     }
     
 
-    private String CreatePassword( byte[] hash, byte[] salt, String password){
+    private String CreatePassword( byte[] hashPassword, byte[] saltPassword, String password){
         // Implementation of password creation logic
         return "hashed_" + password;
     }
