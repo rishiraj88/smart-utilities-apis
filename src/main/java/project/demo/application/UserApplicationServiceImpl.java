@@ -1,9 +1,12 @@
 package project.demo.application;
 
+import org.springframework.stereotype.Service;
+
 import jakarta.transaction.Transactional;
 import project.demo.application.Interfaces.UserApplicationService;
 import project.demo.domain.service.User.UserService;
 
+@Service
 public class UserApplicationServiceImpl implements UserApplicationService {
 
     private final UserService userService;
