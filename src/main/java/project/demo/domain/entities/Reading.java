@@ -45,27 +45,25 @@ public class Reading {
     @JoinColumn(name = "customer_id", nullable = true)
     private Customer customer;
 
-    // delete this constructor
     public Reading() {
         this.uuid = UUID.randomUUID();
     }
 
+    // ID
     public Long getId() {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    // UUID (Apenas Getter para manter imutabilidade)
     public UUID getUuid() {
         return uuid;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
+    // Kind of Meter
     public String getKindOfMeter() {
         return kindOfMeter;
     }
@@ -74,6 +72,7 @@ public class Reading {
         this.kindOfMeter = kindOfMeter;
     }
 
+    // Comment
     public String getComment() {
         return comment;
     }
@@ -82,6 +81,7 @@ public class Reading {
         this.comment = comment;
     }
 
+    // Meter ID
     public String getMeterId() {
         return meterId;
     }
@@ -90,6 +90,7 @@ public class Reading {
         this.meterId = meterId;
     }
 
+    // Meter Count
     public Double getMeterCount() {
         return meterCount;
     }
@@ -98,6 +99,7 @@ public class Reading {
         this.meterCount = meterCount;
     }
 
+    // Substitute (Convenção para boolean: isSubstitute)
     public boolean getSubstitute() {
         return substitute;
     }
@@ -106,6 +108,7 @@ public class Reading {
         this.substitute = substitute;
     }
 
+    // Date of Reading
     public LocalDate getDateOfReading() {
         return dateOfReading;
     }
@@ -114,7 +117,12 @@ public class Reading {
         this.dateOfReading = dateOfReading;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    // Customer
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }
