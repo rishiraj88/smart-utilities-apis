@@ -2,6 +2,7 @@ package project.demo.domain.service.User;
 
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
+import java.util.Date;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -10,6 +11,12 @@ import javax.crypto.Mac;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties.Jwt;
+
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import project.demo.JwtProperties;
 import project.demo.domain.entities.User;
 import project.demo.dto.PasswordData;
 import project.demo.infrastructure.repository.user.UserRepository;
@@ -18,22 +25,25 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    private final JwtProperties jwtProperties;
+
+    public UserServiceImpl(UserRepository userRepository, JwtProperties jwtProperties) {
         this.userRepository = userRepository;
+        this.jwtProperties = jwtProperties;
     }
 
     @Override
     public String Login(String email, String password) {
 
-        Optional<User> existinUser = userRepository.findByEmailIgnoreCase(email);
+        Optional<User> existingUser = userRepository.findByEmailIgnoreCase(email);
 
         //toDo
         //Client dont know if user exists or password is wrong
-        if (existinUser.isEmpty()) {
+        if (existingUser.isEmpty()) {
             throw new RuntimeException("Invalid credentials");
         }
 
-        User user = existinUser.get();
+        User user = existingUser.get();
 
         boolean isPasswordValid = VerifyPassword(
                 password,
@@ -44,7 +54,7 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("Invalid credentials");
         }
 
-        return GenerateToken(user.getEmail(), user.getRole());
+        return GenerateToken(user);
     }
 
     @Override
@@ -103,9 +113,22 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    private String GenerateToken(String email, String name) {
-        // Implementation of token generation logic
-        return "token_for_" + email;
+    private String GenerateToken(User user) {
+        return Jwts.builder()
+                .setSubject(user.getEmail())
+                .claim("id", user.getId())
+                .claim("role", user.getRole())
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + jwtProperties.getExpiration()))
+                .signWith(getKey(), SignatureAlgorithm.HS512)
+                .compact();
     }
+
+    private Key getKey() {
+    return new SecretKeySpec(
+            jwtProperties.getSecret().getBytes(StandardCharsets.UTF_8),
+            SignatureAlgorithm.HS512.getJcaName()
+    );
+}
 
 }
