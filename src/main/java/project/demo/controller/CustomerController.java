@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import project.demo.application.Interfaces.CustomerApplicationService;
+import project.demo.controller.dto.CustomerDto;
 import project.demo.domain.entities.Customer;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,9 +32,6 @@ public class CustomerController {
     public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
         Customer createdCustomer = customerService.createCustomer(customer);
 
-        // toDo
-        // handle exceptions and validation
-
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCustomer);
     }
 
@@ -48,10 +46,20 @@ public class CustomerController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Customer>> getCustomers() {
+    public ResponseEntity<List<CustomerDto>> getCustomers() {
         List<Customer> dbCustomers = customerService.getAllCustomers();
 
-        return ResponseEntity.ok(dbCustomers);
+        List<CustomerDto> customerDtos = dbCustomers.stream()
+                .map(c -> new CustomerDto(
+                        c.getId(),
+                        c.getFirstName(),
+                        c.getLastName(),
+                        c.getGender(),
+                        c.getBirthDate()))
+                .toList();
+
+        return ResponseEntity.ok(customerDtos);
+
     }
 
     @DeleteMapping("/{id}")
