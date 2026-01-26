@@ -4,19 +4,11 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import project.demo.application.Interfaces.CustomerApplicationService;
 import project.demo.controller.dto.CustomerDto;
 import project.demo.domain.entities.Customer;
-
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/api/customers")
@@ -29,43 +21,95 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
+    public ResponseEntity<CustomerDto> createCustomer(@RequestBody CustomerDto customerDto) {
+
+        Customer customer = new Customer();
+        customer.setId(customerDto.id());
+        customer.setFirstName(customerDto.firstName());
+        customer.setLastName(customerDto.lastName());
+        customer.setGender(customerDto.gender());
+        customer.setBirthDate(customerDto.birthDate());
+
         Customer createdCustomer = customerService.createCustomer(customer);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdCustomer);
+        CustomerDto responseDto = new CustomerDto(
+                createdCustomer.getId(),
+                createdCustomer.getFirstName(),
+                createdCustomer.getLastName(),
+                createdCustomer.getGender(),
+                createdCustomer.getBirthDate()
+        );
+
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(responseDto);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Customer> getCustomerById(@PathVariable Long id) {
-        Customer dbCustomer = customerService.getCustomerById(id);
+    public ResponseEntity<CustomerDto> getCustomerById(@PathVariable Long id) {
 
-        // toDo
-        // handle exceptions and validation
+        Customer customer = customerService.getCustomerById(id);
 
-        return ResponseEntity.ok(dbCustomer);
+        CustomerDto dto = new CustomerDto(
+                customer.getId(),
+                customer.getFirstName(),
+                customer.getLastName(),
+                customer.getGender(),
+                customer.getBirthDate()
+        );
+
+        return ResponseEntity.ok(dto);
     }
 
     @GetMapping
     public ResponseEntity<List<CustomerDto>> getCustomers() {
-        List<Customer> dbCustomers = customerService.getAllCustomers();
 
-        List<CustomerDto> customerDtos = dbCustomers.stream()
-                .map(c -> new CustomerDto(
-                        c.getId(),
-                        c.getFirstName(),
-                        c.getLastName(),
-                        c.getGender(),
-                        c.getBirthDate()))
+        List<CustomerDto> customerDtos = customerService.getAllCustomers()
+                .stream()
+                .map(customer -> new CustomerDto(
+                        customer.getId(),
+                        customer.getFirstName(),
+                        customer.getLastName(),
+                        customer.getGender(),
+                        customer.getBirthDate()
+                ))
                 .toList();
 
         return ResponseEntity.ok(customerDtos);
+    }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<CustomerDto> updateCustomer(
+            @PathVariable Long id,
+            @RequestBody CustomerDto customerDto
+    ) {
+
+        if (id == null || customerDto == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        Customer customer = new Customer();
+        customer.setId(customerDto.id());
+        customer.setFirstName(customerDto.firstName());
+        customer.setLastName(customerDto.lastName());
+        customer.setGender(customerDto.gender());
+        customer.setBirthDate(customerDto.birthDate());
+
+        Customer updatedCustomer = customerService.updateCustomer(id, customer);
+
+        CustomerDto responseDto = new CustomerDto(
+                updatedCustomer.getId(),
+                updatedCustomer.getFirstName(),
+                updatedCustomer.getLastName(),
+                updatedCustomer.getGender(),
+                updatedCustomer.getBirthDate()
+        );
+
+        return ResponseEntity.ok(responseDto);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCustomer(@PathVariable Long id) {
-        // todo
-        // handle exceptions and validation id null check ??
 
         if (!customerService.deleteCustomerById(id)) {
             return ResponseEntity.notFound().build();
@@ -73,19 +117,4 @@ public class CustomerController {
 
         return ResponseEntity.noContent().build();
     }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Customer> updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
-        if (customer == null || id == null) {
-            return ResponseEntity.badRequest().build();
-        }
-
-        // toDo
-        // handle exceptions and validation id and customer null check ??
-
-        Customer updatedCustomer = customerService.updateCustomer(id, customer);
-
-        return ResponseEntity.ok(updatedCustomer);
-    }
-
 }
