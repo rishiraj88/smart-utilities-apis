@@ -27,7 +27,6 @@ public class User {
     @Column(name = "role", nullable = true)
     private String role;
 
-    // Getters existentes
     public String getEmail() {
         return email;
     }
