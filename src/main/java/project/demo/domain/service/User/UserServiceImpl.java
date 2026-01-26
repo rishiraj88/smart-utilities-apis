@@ -9,7 +9,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String Register(String email, String password, String name) {
+    public void Register(User user, String password) {
         // Implementation of registration logic
         return "User registered with email: " + email + " and name: " + name;
     }
