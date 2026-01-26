@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public record CustomerDto(
     Long id,
-    String firsName,
+    String firstName,
     String lastName,
     String gender,
     LocalDate birthDate
