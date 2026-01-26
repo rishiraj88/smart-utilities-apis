@@ -37,8 +37,8 @@ public class UserServiceImpl implements UserService {
 
         Optional<User> existingUser = userRepository.findByEmailIgnoreCase(email);
 
-        //toDo
-        //Client dont know if user exists or password is wrong
+        // toDo
+        // Client dont know if user exists or password is wrong
         if (existingUser.isEmpty()) {
             throw new RuntimeException("Invalid credentials");
         }
@@ -72,6 +72,21 @@ public class UserServiceImpl implements UserService {
         user.setPasswordHash(passwordData.hashPassword());
         user.setPasswordSalt(passwordData.saltPassword());
 
+        userRepository.save(user);
+        return true;
+    }
+
+    @Override
+    public boolean ChangePassword(User user, String newPassword) {
+        Optional<User> existingUser = userRepository.findByEmailIgnoreCase(user.getEmail());
+
+        if (existingUser.isEmpty()) {
+            return false;
+        }
+
+        PasswordData passwordData = CreatePassword(newPassword);
+        user.setPasswordHash(passwordData.hashPassword());
+        user.setPasswordSalt(passwordData.saltPassword());
         userRepository.save(user);
         return true;
     }
@@ -125,10 +140,9 @@ public class UserServiceImpl implements UserService {
     }
 
     private Key getKey() {
-    return new SecretKeySpec(
-            jwtProperties.getSecret().getBytes(StandardCharsets.UTF_8),
-            SignatureAlgorithm.HS512.getJcaName()
-    );
-}
+        return new SecretKeySpec(
+                jwtProperties.getSecret().getBytes(StandardCharsets.UTF_8),
+                SignatureAlgorithm.HS512.getJcaName());
+    }
 
 }
